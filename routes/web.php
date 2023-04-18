@@ -20,14 +20,19 @@ Route::get('/', function () {
 });
 
 // Admin All Route
-Route::controller(AdminController::class)->group(function(){
-    Route::get('/admin/logout','destroy')->name('admin.logout');
-    Route::get('/admin/profile','Profile')->name('admin.profile');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard');
+
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/admin/logout','destroy')->name('admin.logout');
+        Route::get('/admin/profile','Profile')->name('admin.profile');
+        Route::get('/edit/profile','EditProfile')->name('edit.profile');
+        Route::post('/store/profile','StoreProfile')->name('store.profile');
+    });
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
