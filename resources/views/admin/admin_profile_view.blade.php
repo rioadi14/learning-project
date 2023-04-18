@@ -35,6 +35,7 @@
                         <h4 class="card-title">Email : {{ $adminData->email }}</h4>
                         <hr>
                         <a href="" class="btn btn-primary btn-rounded waves-effect waves-light">Edit Profile</a>
+                        <h1>dada</h1>
                     </div>
                 </div>
             </div>
