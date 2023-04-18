@@ -1,0 +1,1 @@
+<img src="{{ asset('logo/thug-life.png') }}" width="100px" alt="">
