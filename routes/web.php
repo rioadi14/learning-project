@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\HomeSliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 // Admin All Route
@@ -33,6 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
         Route::get('/change/password','ChangePassword')->name('change.password');
         Route::post('/update/password','UpdatePassword')->name('update.password');
+    });
+
+    Route::controller(HomeSliderController::class)->group(function(){
+        Route::get('/home/slide','HomeSlider')->name('home.slide');
+        Route::post('/update/slider','UpdateSlider')->name('update.slider');
     });
 });
 
