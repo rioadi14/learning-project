@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeSliderController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.index');
+});
+Route::controller(AboutController::class)->group(function(){
+    Route::get('/about','HomeAbout')->name('home.about');
 });
 
 // Admin All Route
@@ -39,6 +42,11 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::controller(HomeSliderController::class)->group(function(){
         Route::get('/home/slide','HomeSlider')->name('home.slide');
         Route::post('/update/slider','UpdateSlider')->name('update.slider');
+    });
+
+    Route::controller(AboutController::class)->group(function(){
+        Route::get('/about/page','AboutPage')->name('about.page');
+        Route::post('/update/about','UpdateAbout')->name('update.about');
     });
 });
 
