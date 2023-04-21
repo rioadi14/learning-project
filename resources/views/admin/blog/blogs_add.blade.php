@@ -43,13 +43,10 @@
                                 <div class="col-sm-10">
                                     <select name="blog_category_id" class="form-select" aria-label="Default select example">
                                         <option selected="">Select Blog Category</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach ($categories as $item)
+                                            <option value="{{ $item->id }}">{{ $item->blog_category }}</option>
+                                        @endforeach
                                         </select>
-                                    @error('portfolio_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
