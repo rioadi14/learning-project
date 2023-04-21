@@ -31,7 +31,7 @@
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
-                                <a href="contact.html" class="btn">Contact me</a>
+                                <a href="{{ route('dashboard') }}" class="btn">Dashboard</a>
                             </div>
                         </nav>
                     </div>
