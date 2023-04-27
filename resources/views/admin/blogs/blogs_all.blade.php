@@ -55,10 +55,10 @@
                                     <td> {{ $item->blog_tags }}</td>
                                     <td> <img src="{{ asset($item->blog_image) }}" alt="" style="width: 60px; height: 60px;"></td>
                                     <td>
-                                        <a href="{{ route('edit.portfolio', $item->id) }}" class="btn btn-info sm " title="Edit Data">
+                                        <a href="{{ route('edit.blog', $item->id) }}" class="btn btn-info sm " title="Edit Data">
                                             <i class="fas fa-edit"></i>
                                         </a> 
-                                        <a href="{{ route('delete.portfolio',$item->id) }}" class="btn btn-danger sm " id="delete" title="Delete Data">
+                                        <a href="{{ route('delete.blog',$item->id) }}" class="btn btn-danger sm " id="delete" title="Delete Data">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
