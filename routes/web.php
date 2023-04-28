@@ -5,9 +5,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
+use App\Http\Controllers\Home\ContactController;
+use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\PortfolioController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,20 +22,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::controller(HomeSliderController::class)->group(function(){
+    Route::get('/','HomeMain')->name('home');
 });
 Route::controller(AboutController::class)->group(function(){
     Route::get('/about','HomeAbout')->name('home.about');
 });
 Route::controller(PortfolioController::class)->group(function(){
     Route::get('/portfolio/details/{id}','PortfolioDetails')->name('portfolio.details');
+    Route::get('/home/portfolio','HomePortfolio')->name('home.portfolio');
 });
 Route::controller(BlogController::class)->group(function(){
     Route::get('/blog/details/{id}','BlogDetails')->name('blog.details');
     Route::get('/category/blog/{id}','CategoryBlog')->name('category.blog');
     Route::get('blog','HomeBlog')->name('home.blog');
 });
+Route::controller(ContactController::class)->group(function(){
+    Route::get('/contact','Contact')->name('contact.me');
+    Route::post('/store/message','StoreMessage')->name('store.message');
+});
+
 
 // Admin All Route
 Route::middleware(['auth', 'verified'])->group(function(){
@@ -93,6 +105,16 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/edit/blog/{id}','EditBlog')->name('edit.blog');
         Route::post('/update/blog{id}','UpdateBlog')->name('update.blog');
         Route::get('/delete/blog/{id}','DeleteBlog')->name('delete.blog');
+    });
+
+    Route::controller(FooterController::class)->group(function(){
+        Route::get('/footer/setup','FooterSetup')->name('footer.setup');
+        Route::post('/update/footer','UpdateFooter')->name('update.footer');
+    });
+
+    Route::controller(ContactController::class)->group(function(){
+        Route::get('/contact/message','ContactMessage')->name('contact.message');
+        Route::get('/delete/message/{id}','DeleteMessage')->name('delete.message');
     });
 
 });

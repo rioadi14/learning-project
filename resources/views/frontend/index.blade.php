@@ -1,6 +1,8 @@
 @extends('frontend.main_master')
 @section('main')
-
+@section('title')
+    Home | Learning Project
+@endsection
 <!-- home-slide area-->
 @include('frontend.home_all.home_slide')
 <!-- home-slide area-end-->

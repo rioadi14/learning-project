@@ -58,4 +58,9 @@ class HomeSliderController extends Controller
         }
        
     }
+
+    public function HomeMain(){
+
+        return view('frontend.index');
+    }
 }
